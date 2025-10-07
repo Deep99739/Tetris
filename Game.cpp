@@ -1,27 +1,17 @@
-/*****************************************************************************************
-/* File: Game.cpp
-/* Desc: General class for the game
-/*
-/* gametuto.com - Javier López López (javilop.com)
-/*
-/*****************************************************************************************
-/*
-/* Creative Commons - Attribution 3.0 Unported
-/* You are free:
-/*	to Share — to copy, distribute and transmit the work
-/*	to Remix — to adapt the work
-/*
-/* Under the following conditions:
-/* Attribution. You must attribute the work in the manner specified by the author or licensor 
-/* (but not in any way that suggests that they endorse you or your use of the work).
-/*
-/*****************************************************************************************/
+
 
 // ------ Includes -----
-#ifndef LINUX
-#include <windows.h>
+#if defined(_WIN32) || defined(_WIN64)
+  #include <windows.h>
+#else
+  #include <unistd.h>                 // only if somewhere you call Sleep()
+  inline void Sleep(unsigned ms) { usleep(ms * 1000); }  // harmless shim
 #endif
+
+#include <cstdlib> // rand, srand
+#include <ctime>   // time
 #include "Game.h"
+
 
 
 /* 

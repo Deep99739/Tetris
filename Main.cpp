@@ -1,37 +1,24 @@
-/*****************************************************************************************
-/* Desc: Tetris tutorial
-/*
-/* gametuto.com - Javier López López (javilop.com)
-/*
-/*****************************************************************************************
-/*
-/* Creative Commons - Attribution 3.0 Unported
-/* You are free:
-/*	to Share — to copy, distribute and transmit the work
-/*	to Remix — to adapt the work
-/*
-/* Under the following conditions:
-/* Attribution. You must attribute the work in the manner specified by the author or licensor 
-/* (but not in any way that suggests that they endorse you or your use of the work).
-/*
-/*****************************************************************************************/
 
-#include "Game.h"
-#ifndef LINUX
-#include <windows.h>
+#if defined(_WIN32) || defined(_WIN64)
+  #include <windows.h>
+#else
+  #include <SDL.h>   // must be before main so SDL_main wrapper is active
 #endif
+
+#include <cstdlib> // rand, srand
+#include <ctime>   // time
+#include "Game.h"
 
 /*
 ==================
 Main
 ==================
 */
-#ifndef LINUX
-int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)	// Linux users should quit this line
+#if defined(_WIN32) || defined(_WIN64)
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 #else
-int main()
+int main(int argc, char* argv[])   // SDL 1.2 wrapper needs args
 #endif
-// int main ()  // Linux users should use this line instead the previous one
 {
 	// ----- Vars -----
 
